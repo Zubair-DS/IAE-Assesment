@@ -26,8 +26,8 @@ flowchart LR
 
     MA -->|add/recall| MS
     RA -->|write knowledge| MS
-    RA -.->|search (hybrid)| VS
-    MS -.indexes.-> VS
+    RA -. search (hybrid) .-> VS
+    MS -. indexes .-> VS
 
     AA -->|uses outputs| M
     RA -->|findings| M
