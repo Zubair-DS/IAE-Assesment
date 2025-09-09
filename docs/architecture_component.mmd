@@ -11,8 +11,8 @@ flowchart LR
     M -->|Recall & Store| MA
 
     subgraph Memory Layer
-      MS[MemoryService\n- Conversation Memory\n- Knowledge Base\n- Agent State]
-      VS[InMemoryVectorStore\n(Bag-of-Words + Cosine)]
+      MS["MemoryService<br/>- Conversation Memory<br/>- Knowledge Base<br/>- Agent State"]
+      VS["InMemoryVectorStore<br/>(Bag-of-Words + Cosine)"]
     end
 
     MA -->|add/recall| MS
