@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/tasks.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run app (venv)",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "app.py"
+      ],
+      "options": {
+        "env": {
+          "USE_AZURE_OPENAI": "0"
+        }
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run app with Azure (venv)",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "app.py"
+      ],
+      "options": {
+        "env": {
+          "USE_AZURE_OPENAI": "1",
+          "AZURE_OPENAI_TIMEOUT": "1.5"
+        }
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "pytest (venv)",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "group": "test",
+      "problemMatcher": ["$pytest"]
+    }
+  ]
+}

@@ -1,1 +1,34 @@
-<file upload placeholder>
+sequenceDiagram
+    participant U as User
+    participant M as Manager
+    participant MA as MemoryAgent
+    participant RA as ResearchAgent
+    participant AA as AnalysisAgent
+    participant MS as MemoryService
+    participant VS as VectorStore
+
+    U->>M: Ask a question
+    M->>M: Classify & Plan (LLM+strict JSON or rules)
+    alt Plan includes memory
+      M->>MA: Recall(query)
+      MA->>MS: search_knowledge(hybrid)
+      MS->>VS: vector + keyword
+      VS-->>MS: top-k scored results
+      MS-->>MA: merged results
+      MA-->>M: recall list
+    end
+    alt Plan includes research
+      M->>RA: Research(query)
+      RA->>MS: search_knowledge(hybrid)
+      MS->>VS: vector + keyword
+      VS-->>MS: top-k scored results
+      MS-->>RA: merged results (or simulate)
+      RA->>MS: add_knowledge(findings)
+      RA-->>M: findings
+    end
+    alt Plan includes analysis
+      M->>AA: Analyze(inputs, goal)
+      AA-->>M: summary + confidence
+    end
+    M->>MS: remember(summary)
+    M-->>U: Final answer

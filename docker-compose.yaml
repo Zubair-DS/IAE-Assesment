@@ -1,1 +1,8 @@
-<file upload placeholder>
+version: '3.8'
+services:
+  multiagent:
+    build: .
+    image: multi-agent:local
+    volumes:
+      - ./outputs:/app/outputs
+    command: ["python", "app.py"]

@@ -1,1 +1,4 @@
-<file upload placeholder>
+pdfminer.six
+pytest
+python-dotenv
+requests

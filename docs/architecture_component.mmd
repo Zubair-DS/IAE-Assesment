@@ -1,1 +1,26 @@
-<file upload placeholder>
+flowchart LR
+    U[User] -->|Question| M((Coordinator / Manager))
+    subgraph Agents
+      RA[ResearchAgent]
+      AA[AnalysisAgent]
+      MA[MemoryAgent]
+    end
+
+    M -->|Plan & Orchestrate| RA
+    M -->|Plan & Orchestrate| AA
+    M -->|Recall & Store| MA
+
+    subgraph Memory Layer
+      MS[MemoryService\n- Conversation Memory\n- Knowledge Base\n- Agent State]
+      VS[InMemoryVectorStore\n(Bag-of-Words + Cosine)]
+    end
+
+    MA -->|add/recall| MS
+    RA -->|write knowledge| MS
+    RA -.->|search (hybrid)| VS
+    MS -.indexes.-> VS
+
+    AA -->|uses outputs| M
+    RA -->|findings| M
+    MA -->|recall| M
+    M -->|Final Answer| U
